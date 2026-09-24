@@ -1,9 +1,10 @@
 ---
-
-name: Bug Report about: バグの報告用テンプレート title: '[BUG] ' labels: bug
-
+name: Bug Report
+about: バグの報告用テンプレート
+title: '[BUG] '
+labels: bug
 assignees: ''
--------------
+---
 
 バグの概要
 ----------
@@ -13,7 +14,9 @@ assignees: ''
 再現手順
 --------
 
-1.	2. 3.
+1.
+2.
+3.
 
 期待される動作
 --------------

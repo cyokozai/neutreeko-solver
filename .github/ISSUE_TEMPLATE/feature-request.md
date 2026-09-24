@@ -1,9 +1,10 @@
 ---
-
-name: Feature Request about: 新機能の提案用テンプレート title: '[FEATURE] ' labels: enhancement
-
+name: Feature Request
+about: 新機能の提案用テンプレート
+title: '[FEATURE] '
+labels: enhancement
 assignees: ''
--------------
+---
 
 機能の概要
 ----------
