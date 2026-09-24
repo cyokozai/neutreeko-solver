@@ -71,8 +71,11 @@ best_moves(t, p)   # b1-c1, d1-c1
 ├── scripts/
 │   ├── solve.jl        強解決して表を保存し、統計を出力する
 │   ├── play.jl         対局 CLI（人間・エージェント、局面解析）
-│   └── tournament.jl   エージェント総当たりの勝率表
-├── verify/             独立実装の αβ 検証器（別の PR で追加予定）
+│   ├── tournament.jl   エージェント総当たりの勝率表
+│   ├── export_tsv.jl   表を検証器の TSV 形式で書き出す
+│   └── crosscheck.jl   表と αβ 検証器の突き合わせ
+├── results/crosscheck.md  突き合わせの結果（6,942,827 回、不一致 0）
+├── verify/             独立実装の αβ 検証器（本体とコードを共有しない）
 ├── docker/             Dockerfile と入口スクリプト
 ├── compose.yaml        test / verify / solve / shell のサービス定義
 ├── Makefile            make test / verify / solve / shell / build / clean
