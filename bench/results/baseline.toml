@@ -1,0 +1,1011 @@
+[breakdown]
+draws_left = 104660
+identical_to_solve = true
+processed = 3363420
+
+    [breakdown.classify]
+    max = 0.182337004
+    median = 0.168013999
+    min = 0.167973875
+    n = 7
+    samples = [0.171154565, 0.168024541, 0.168013999, 0.167974208, 0.167975833, 0.167973875, 0.182337004]
+
+    [breakdown.draw]
+    max = 0.00050208
+    median = 0.000464706
+    min = 0.000460789
+    n = 7
+    samples = [0.000464664, 0.000464747, 0.000473623, 0.000462039, 0.000460789, 0.000464706, 0.00050208]
+
+    [breakdown.propagate]
+    max = 0.858434064
+    median = 0.838915296
+    min = 0.829767429
+    n = 7
+    samples = [0.843252188, 0.845780008, 0.858434064, 0.829767429, 0.830090385, 0.838915296, 0.833671741]
+
+    [breakdown.seed]
+    max = 0.001613617
+    median = 0.001516659
+    min = 0.001511117
+    n = 7
+    samples = [0.001613617, 0.001579325, 0.001515325, 0.001516659, 0.001511117, 0.001539033, 0.001514242]
+
+    [breakdown.total]
+    max = 1.028437011
+    median = 1.015848621
+    min = 0.999720335
+    n = 7
+    samples = [1.016485034, 1.015848621, 1.028437011, 0.999720335, 1.000038124, 1.00889291, 1.018025067]
+
+[breakdown_classify_detail.count_moves_interior.allocated_bytes]
+max = 3.542088e6
+median = 3.542088e6
+min = 3.542088e6
+n = 7
+samples = [3.542088e6, 3.542088e6, 3.542088e6, 3.542088e6, 3.542088e6, 3.542088e6, 3.542088e6]
+
+[breakdown_classify_detail.count_moves_interior.gc_seconds]
+max = 0.0
+median = 0.0
+min = 0.0
+n = 7
+samples = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+
+[breakdown_classify_detail.count_moves_interior.seconds]
+max = 0.168220998
+median = 0.161856742
+min = 0.161671076
+n = 7
+samples = [0.161678992, 0.167364462, 0.164584268, 0.161671076, 0.161721659, 0.168220998, 0.161856742]
+
+[breakdown_classify_detail.unrank_and_state_kind.allocated_bytes]
+max = 3.542088e6
+median = 3.542088e6
+min = 3.542088e6
+n = 7
+samples = [3.542088e6, 3.542088e6, 3.542088e6, 3.542088e6, 3.542088e6, 3.542088e6, 3.542088e6]
+
+[breakdown_classify_detail.unrank_and_state_kind.gc_seconds]
+max = 0.0
+median = 0.0
+min = 0.0
+n = 7
+samples = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+
+[breakdown_classify_detail.unrank_and_state_kind.seconds]
+max = 0.015767831
+median = 0.015722872
+min = 0.015660457
+n = 7
+samples = [0.015722872, 0.015727873, 0.015660457, 0.01566729, 0.015661122, 0.015736956, 0.015767831]
+
+[environment]
+arch = "aarch64"
+cgroup_cpu_max = "max 100000"
+cgroup_memory_max = "max"
+cpu_model_in_container = "unknown"
+cpu_threads_visible = 8
+julia_threads = 1
+julia_version = "1.11.9"
+kernel = "Linux"
+nproc = "8"
+total_memory_bytes_in_container = 8393605120
+uname = "Linux 424f24ae0a43 7.0.14-orbstack-00380-ga7e0a2dc9535 #1 SMP PREEMPT Fri Aug  7 03:48:40 UTC 2026 aarch64 GNU/Linux"
+
+    [environment.docker_stats]
+    before_raw = """objective_almeida\t0.27%\t3.316MiB / 7.817GiB\nobjective_jepsen\t0.20%\t996KiB / 7.817GiB\npvectl-dev\t0.00%\t48KiB / 7.817GiB"""
+    container_name = "neutreeko-bench-baseline"
+    during_raw = """2026-09-24T15:02:47Z\nobjective_almeida\t0.05%\t3.285MiB / 7.817GiB\nobjective_jepsen\t0.05%\t1.16MiB / 7.817GiB\npvectl-dev\t0.00%\t48KiB / 7.817GiB\nneutreeko-bench-baseline\t113.35%\t435.7MiB / 7.817GiB\n2026-09-24T15:02:59Z\nneutreeko-bench-baseline\t99.70%\t566.7MiB / 7.817GiB\nobjective_almeida\t0.07%\t3.297MiB / 7.817GiB\nobjective_jepsen\t0.05%\t1.16MiB / 7.817GiB\npvectl-dev\t0.00%\t48KiB / 7.817GiB\n2026-09-24T15:03:11Z\nneutreeko-bench-baseline\t99.93%\t591.7MiB / 7.817GiB\nobjective_almeida\t0.04%\t3.137MiB / 7.817GiB\nobjective_jepsen\t0.05%\t944KiB / 7.817GiB\npvectl-dev\t0.00%\t48KiB / 7.817GiB\n2026-09-24T15:03:23Z\nneutreeko-bench-baseline\t100.13%\t791.1MiB / 7.817GiB\nobjective_almeida\t0.05%\t3.457MiB / 7.817GiB\nobjective_jepsen\t0.14%\t1.203MiB / 7.817GiB\npvectl-dev\t0.00%\t48KiB / 7.817GiB\n2026-09-24T15:03:35Z\nneutreeko-bench-baseline\t99.97%\t494.6MiB / 7.817GiB\nobjective_almeida\t0.05%\t4.156MiB / 7.817GiB\nobjective_jepsen\t0.05%\t2.043MiB / 7.817GiB\npvectl-dev\t0.00%\t48KiB / 7.817GiB\n2026-09-24T15:03:47Z\nneutreeko-bench-baseline\t99.97%\t471.5MiB / 7.817GiB\nobjective_almeida\t0.05%\t4.254MiB / 7.817GiB\nobjective_jepsen\t0.04%\t2.047MiB / 7.817GiB\npvectl-dev\t0.00%\t48KiB / 7.817GiB\n2026-09-24T15:04:00Z\nneutreeko-bench-baseline\t99.68%\t436.4MiB / 7.817GiB\nobjective_almeida\t0.06%\t4.395MiB / 7.817GiB\nobjective_jepsen\t0.05%\t2.055MiB / 7.817GiB\npvectl-dev\t0.00%\t48KiB / 7.817GiB\n2026-09-24T15:04:12Z\nneutreeko-bench-baseline\t99.65%\t437.1MiB / 7.817GiB\nobjective_almeida\t0.05%\t4.055MiB / 7.817GiB\nobjective_jepsen\t0.04%\t2.055MiB / 7.817GiB\npvectl-dev\t0.00%\t48KiB / 7.817GiB\n2026-09-24T15:04:24Z\nneutreeko-bench-baseline\t99.80%\t558.9MiB / 7.817GiB\nobjective_almeida\t0.05%\t3.613MiB / 7.817GiB\nobjective_jepsen\t0.04%\t1.457MiB / 7.817GiB\npvectl-dev\t0.00%\t48KiB / 7.817GiB\n2026-09-24T15:04:36Z\nneutreeko-bench-baseline\t99.85%\t929.8MiB / 7.817GiB\nobjective_almeida\t0.05%\t3.438MiB / 7.817GiB\nobjective_jepsen\t0.05%\t1.262MiB / 7.817GiB\npvectl-dev\t0.00%\t48KiB / 7.817GiB\n2026-09-24T15:04:48Z\nneutreeko-bench-baseline\t101.88%\t904.6MiB / 7.817GiB\nobjective_almeida\t0.05%\t3.309MiB / 7.817GiB\nobjective_jepsen\t0.09%\t1.258MiB / 7.817GiB\npvectl-dev\t0.00%\t48KiB / 7.817GiB\n"""
+    others_total_cpu_percent_max = 0.47000000000000003
+    samples = 12
+
+        [environment.docker_stats.max_cpu_percent_by_container]
+        "(self) neutreeko-bench-baseline" = 113.35
+        objective_almeida = 0.27
+        objective_jepsen = 0.2
+        pvectl-dev = 0.0
+
+    [environment.host]
+    commit = "3f95c300b94e532309815306c40d38069125b505"
+    container_name = "neutreeko-bench-baseline"
+    docker_cpus_flag = "(指定なし)"
+    docker_image = "julia:1.11"
+    docker_mem_bytes = "8393605120"
+    docker_ncpu = "8"
+    docker_runtime = "OrbStack / Docker 29.4.0"
+    host_core_types = "P=4 E=4"
+    host_cpu = "Apple M3"
+    host_mem_bytes = "17179869184"
+    host_ncpu = "8"
+    host_os = "macOS 26.6.2"
+    src_dirty_files = "0"
+    src_tree = "b4beec9239cf89f84c73b6737ff59ee8d6aeac64"
+
+[fixpoint]
+identical_to_solve = true
+iterations_derived = 52
+
+    [fixpoint.allocated_bytes]
+    max = 1.066178e8
+    median = 1.066178e8
+    min = 1.066178e8
+    n = 7
+    samples = [1.066178e8, 1.066178e8, 1.066178e8, 1.066178e8, 1.066178e8, 1.066178e8, 1.066178e8]
+
+    [fixpoint.gc_seconds]
+    max = 0.000276625
+    median = 0.000201375
+    min = 0.0
+    n = 7
+    samples = [0.0, 0.000202291, 0.000276625, 0.000201375, 0.000202917, 0.00019425, 0.000196166]
+
+    [fixpoint.seconds]
+    max = 5.134465792
+    median = 5.107659267
+    min = 5.091650153
+    n = 7
+    samples = [5.101850564, 5.107659267, 5.097726191, 5.134465792, 5.134136833, 5.091650153, 5.12481209]
+
+[generation.canonical_8sym_random]
+ns_max = 73.364659
+ns_median = 68.92216199999999
+ns_min = 68.657245
+ops = 1000000
+seconds_median = 0.068922162
+
+[generation.child_over_interior]
+branching_mean = 13.694442644753101
+generated = 46501452
+ns_max = 110.97684533478774
+ns_median = 98.30758259699779
+ns_min = 98.20318472725646
+ns_per_generated_median = 7.178647948455459
+ops = 3395644
+seconds_median = 0.333817553
+states = 3395644
+
+[generation.child_rank_over_interior]
+branching_mean = 13.694442644753101
+generated = 46501452
+ns_max = 151.36174787462994
+ns_median = 144.08957858951055
+ns_min = 144.01072786193134
+ns_per_generated_median = 10.52175560023373
+ops = 3395644
+seconds_median = 0.489276913
+states = 3395644
+
+[generation.pred_over_decided]
+branching_mean = 13.665884129844027
+generated = 45964108
+ns_max = 144.29240356541854
+ns_median = 142.6588145399623
+ns_min = 141.8190969310999
+ns_per_generated_median = 10.439047571640028
+ops = 3363420
+seconds_median = 0.47982151
+states = 3363420
+
+[generation.pred_over_valid]
+branching_mean = 13.683628982030402
+generated = 47455920
+ns_max = 144.46401611266177
+ns_median = 141.83981194205438
+ns_min = 141.46589179027012
+ns_per_generated_median = 10.365657540724106
+ops = 3468080
+seconds_median = 0.491911815
+states = 3468080
+
+[generation.pred_rank_over_decided]
+branching_mean = 13.665884129844027
+generated = 45964108
+ns_max = 183.1155496488693
+ns_median = 179.54090419870252
+ns_min = 177.5641356119664
+ns_per_generated_median = 13.137891591413021
+ops = 3363420
+seconds_median = 0.603871468
+states = 3363420
+
+[generation.pred_rank_over_valid]
+branching_mean = 13.683628982030402
+generated = 47455920
+ns_max = 177.4426627990127
+ns_median = 177.0855744388826
+ns_min = 176.93537230975065
+ns_per_generated_median = 12.94141887882481
+ops = 3468080
+seconds_median = 0.614146939
+states = 3468080
+
+[generation.rank_random_order]
+ns_max = 2.5978469791078487
+ns_median = 2.583213438735178
+ns_min = 2.580601637492942
+ops = 3542000
+seconds_median = 0.009149742
+
+[generation.rank_sequential]
+ns_max = 2.6013997741389048
+ns_median = 2.5879305477131562
+ns_min = 2.5847896668548844
+ops = 3542000
+seconds_median = 0.00916645
+
+[generation.unrank_random_order]
+ns_max = 1.84901581027668
+ns_median = 1.835040654997177
+ns_min = 1.827241671372106
+ops = 3542000
+seconds_median = 0.006499714
+
+[generation.unrank_sequential]
+ns_max = 1.4343159232072276
+ns_median = 1.4289517221908525
+ns_min = 1.4233876341050253
+ops = 3542000
+seconds_median = 0.005061347
+
+[lookup.best_moves_random]
+ns_max = 2374.3359
+ns_median = 2317.64886
+ns_min = 2245.87266
+ops = 100000
+seconds_median = 0.231764886
+
+[lookup.lookup_random]
+ns_max = 18.909071
+ns_median = 12.679158
+ns_min = 12.610450000000002
+ops = 1000000
+seconds_median = 0.012679158
+
+[lookup.value_by_state_index_random]
+ns_max = 6.455163
+ns_median = 6.113620999999999
+ns_min = 5.987288
+ops = 1000000
+seconds_median = 0.006113621
+
+[memory]
+solve_allocated_bytes_median = 2.4794304e7
+solve_gc_seconds_median = 0.0
+table_dist_bytes = 3542000
+table_value_bytes = 3542000
+work_cnt_bytes = 3542000
+work_queue_bytes = 14168000
+
+    [memory.const_tables_bytes]
+    BINOM = 880
+    FREE_SQUARES = 50648
+    LINE_BY_RANK = 352
+    ME_BITS = 9240
+    OPP_COMBOS22 = 4660
+    RAYS = 17976
+    WIN_LINES = 736
+
+    [memory.rss_bytes.1_after_load]
+    maxrss = 377868288
+    vmhwm = 378122240
+    vmrss = 378122240
+
+    [memory.rss_bytes.2_after_solve]
+    maxrss = 402542592
+    vmhwm = 402542592
+    vmrss = 400986112
+
+    [memory.rss_bytes.3_before_fixpoint]
+    maxrss = 760180736
+    vmhwm = 760180736
+    vmrss = 566857728
+
+    [memory.rss_bytes.4_after_fixpoint]
+    maxrss = 760180736
+    vmhwm = 760180736
+    vmrss = 571260928
+
+    [memory.rss_bytes.5_end]
+    maxrss = 760180736
+    vmhwm = 760180736
+    vmrss = 574337024
+
+[meta]
+finished_utc = "2026-09-24T15:04:52Z"
+fixpoint_reps = 7
+note = "時間は秒。各項目は JIT 込みの 1 回を捨てた後の reps 回の中央値・最小・最大"
+nstates = 3542000
+reps = 7
+rule = "draw"
+started_utc = "2026-09-24T15:02:52Z"
+
+[propagation]
+counter_sum_left = 28442396
+decrements = 18059056
+draws = 104660
+initial_counter_sum = 46501452
+invalid = 73920
+losses = 890392
+max_dist = 51
+peak_live_queue = 969880
+preds_enumerated = 45964108
+preds_skipped = 25432024
+preds_undecided = 20532084
+processed = 3363420
+seconds_instrumented_total = 0.8261159069999999
+set_loss_by_counter = 817956
+set_win = 2473028
+wins = 2473028
+
+    [[propagation.layers]]
+    decrements = 0
+    dist = 0
+    loss = 72436
+    preds = 763972
+    preds_undecided = 701124
+    seconds_instrumented = 0.012357933
+    set_loss = 0
+    set_win = 701124
+    size = 72436
+    win = 0
+    [[propagation.layers]]
+    decrements = 7563760
+    dist = 1
+    loss = 0
+    preds = 9599612
+    preds_undecided = 7563760
+    seconds_instrumented = 0.135711884
+    set_loss = 200952
+    set_win = 0
+    size = 701124
+    win = 701124
+    [[propagation.layers]]
+    decrements = 0
+    dist = 2
+    loss = 200952
+    preds = 2419968
+    preds_undecided = 969880
+    seconds_instrumented = 0.05210934
+    set_loss = 0
+    set_win = 969880
+    size = 200952
+    win = 0
+    [[propagation.layers]]
+    decrements = 6724396
+    dist = 3
+    loss = 0
+    preds = 13691624
+    preds_undecided = 6724396
+    seconds_instrumented = 0.246958194
+    set_loss = 148756
+    set_win = 0
+    size = 969880
+    win = 969880
+    [[propagation.layers]]
+    decrements = 0
+    dist = 4
+    loss = 148756
+    preds = 1761468
+    preds_undecided = 293772
+    seconds_instrumented = 0.03377694
+    set_loss = 0
+    set_win = 293772
+    size = 148756
+    win = 0
+    [[propagation.layers]]
+    decrements = 1867076
+    dist = 5
+    loss = 0
+    preds = 4198776
+    preds_undecided = 1867076
+    seconds_instrumented = 0.088659225
+    set_loss = 101456
+    set_win = 0
+    size = 293772
+    win = 293772
+    [[propagation.layers]]
+    decrements = 0
+    dist = 6
+    loss = 101456
+    preds = 1249668
+    preds_undecided = 139336
+    seconds_instrumented = 0.022926
+    set_loss = 0
+    set_win = 139336
+    size = 101456
+    win = 0
+    [[propagation.layers]]
+    decrements = 736012
+    dist = 7
+    loss = 0
+    preds = 1965196
+    preds_undecided = 736012
+    seconds_instrumented = 0.043085473
+    set_loss = 71968
+    set_win = 0
+    size = 139336
+    win = 139336
+    [[propagation.layers]]
+    decrements = 0
+    dist = 8
+    loss = 71968
+    preds = 947484
+    preds_undecided = 83208
+    seconds_instrumented = 0.016460702
+    set_loss = 0
+    set_win = 83208
+    size = 71968
+    win = 0
+    [[propagation.layers]]
+    decrements = 387812
+    dist = 9
+    loss = 0
+    preds = 1180532
+    preds_undecided = 387812
+    seconds_instrumented = 0.02560811
+    set_loss = 55152
+    set_win = 0
+    size = 83208
+    win = 83208
+    [[propagation.layers]]
+    decrements = 0
+    dist = 10
+    loss = 55152
+    preds = 764280
+    preds_undecided = 56992
+    seconds_instrumented = 0.012755139
+    set_loss = 0
+    set_win = 56992
+    size = 55152
+    win = 0
+    [[propagation.layers]]
+    decrements = 224260
+    dist = 11
+    loss = 0
+    preds = 799412
+    preds_undecided = 224260
+    seconds_instrumented = 0.016998198
+    set_loss = 41196
+    set_win = 0
+    size = 56992
+    win = 56992
+    [[propagation.layers]]
+    decrements = 0
+    dist = 12
+    loss = 41196
+    preds = 601276
+    preds_undecided = 38664
+    seconds_instrumented = 0.009519573
+    set_loss = 0
+    set_win = 38664
+    size = 41196
+    win = 0
+    [[propagation.layers]]
+    decrements = 134260
+    dist = 13
+    loss = 0
+    preds = 542092
+    preds_undecided = 134260
+    seconds_instrumented = 0.011332022
+    set_loss = 31120
+    set_win = 0
+    size = 38664
+    win = 38664
+    [[propagation.layers]]
+    decrements = 0
+    dist = 14
+    loss = 31120
+    preds = 467228
+    preds_undecided = 30076
+    seconds_instrumented = 0.007409834
+    set_loss = 0
+    set_win = 30076
+    size = 31120
+    win = 0
+    [[propagation.layers]]
+    decrements = 96416
+    dist = 15
+    loss = 0
+    preds = 421748
+    preds_undecided = 96416
+    seconds_instrumented = 0.00870187
+    set_loss = 26552
+    set_win = 0
+    size = 30076
+    win = 30076
+    [[propagation.layers]]
+    decrements = 0
+    dist = 16
+    loss = 26552
+    preds = 387124
+    preds_undecided = 24056
+    seconds_instrumented = 0.006237007
+    set_loss = 0
+    set_win = 24056
+    size = 26552
+    win = 0
+    [[propagation.layers]]
+    decrements = 72592
+    dist = 17
+    loss = 0
+    preds = 333564
+    preds_undecided = 72592
+    seconds_instrumented = 0.006886129
+    set_loss = 23344
+    set_win = 0
+    size = 24056
+    win = 24056
+    [[propagation.layers]]
+    decrements = 0
+    dist = 18
+    loss = 23344
+    preds = 348116
+    preds_undecided = 23724
+    seconds_instrumented = 0.005620761
+    set_loss = 0
+    set_win = 23724
+    size = 23344
+    win = 0
+    [[propagation.layers]]
+    decrements = 57728
+    dist = 19
+    loss = 0
+    preds = 321944
+    preds_undecided = 57728
+    seconds_instrumented = 0.006523006
+    set_loss = 21064
+    set_win = 0
+    size = 23724
+    win = 23724
+    [[propagation.layers]]
+    decrements = 0
+    dist = 20
+    loss = 21064
+    preds = 305668
+    preds_undecided = 21248
+    seconds_instrumented = 0.005127222
+    set_loss = 0
+    set_win = 21248
+    size = 21064
+    win = 0
+    [[propagation.layers]]
+    decrements = 47860
+    dist = 21
+    loss = 0
+    preds = 286932
+    preds_undecided = 47860
+    seconds_instrumented = 0.00580676
+    set_loss = 19040
+    set_win = 0
+    size = 21248
+    win = 21248
+    [[propagation.layers]]
+    decrements = 0
+    dist = 22
+    loss = 19040
+    preds = 271348
+    preds_undecided = 19236
+    seconds_instrumented = 0.004537226
+    set_loss = 0
+    set_win = 19236
+    size = 19040
+    win = 0
+    [[propagation.layers]]
+    decrements = 36604
+    dist = 23
+    loss = 0
+    preds = 256036
+    preds_undecided = 36604
+    seconds_instrumented = 0.005019472
+    set_loss = 16116
+    set_win = 0
+    size = 19236
+    win = 19236
+    [[propagation.layers]]
+    decrements = 0
+    dist = 24
+    loss = 16116
+    preds = 232284
+    preds_undecided = 16672
+    seconds_instrumented = 0.003831438
+    set_loss = 0
+    set_win = 16672
+    size = 16116
+    win = 0
+    [[propagation.layers]]
+    decrements = 29936
+    dist = 25
+    loss = 0
+    preds = 223720
+    preds_undecided = 29936
+    seconds_instrumented = 0.004298851
+    set_loss = 15268
+    set_win = 0
+    size = 16672
+    win = 16672
+    [[propagation.layers]]
+    decrements = 0
+    dist = 26
+    loss = 15268
+    preds = 221540
+    preds_undecided = 14240
+    seconds_instrumented = 0.003558522
+    set_loss = 0
+    set_win = 14240
+    size = 15268
+    win = 0
+    [[propagation.layers]]
+    decrements = 21388
+    dist = 27
+    loss = 0
+    preds = 187748
+    preds_undecided = 21388
+    seconds_instrumented = 0.003488106
+    set_loss = 11492
+    set_win = 0
+    size = 14240
+    win = 14240
+    [[propagation.layers]]
+    decrements = 0
+    dist = 28
+    loss = 11492
+    preds = 162948
+    preds_undecided = 9992
+    seconds_instrumented = 0.002652778
+    set_loss = 0
+    set_win = 9992
+    size = 11492
+    win = 0
+    [[propagation.layers]]
+    decrements = 15524
+    dist = 29
+    loss = 0
+    preds = 136752
+    preds_undecided = 15524
+    seconds_instrumented = 0.002512694
+    set_loss = 8304
+    set_win = 0
+    size = 9992
+    win = 9992
+    [[propagation.layers]]
+    decrements = 0
+    dist = 30
+    loss = 8304
+    preds = 121040
+    preds_undecided = 7708
+    seconds_instrumented = 0.001975989
+    set_loss = 0
+    set_win = 7708
+    size = 8304
+    win = 0
+    [[propagation.layers]]
+    decrements = 12556
+    dist = 31
+    loss = 0
+    preds = 103472
+    preds_undecided = 12556
+    seconds_instrumented = 0.001935156
+    set_loss = 7424
+    set_win = 0
+    size = 7708
+    win = 7708
+    [[propagation.layers]]
+    decrements = 0
+    dist = 32
+    loss = 7424
+    preds = 107056
+    preds_undecided = 7176
+    seconds_instrumented = 0.001742283
+    set_loss = 0
+    set_win = 7176
+    size = 7424
+    win = 0
+    [[propagation.layers]]
+    decrements = 10044
+    dist = 33
+    loss = 0
+    preds = 96580
+    preds_undecided = 10044
+    seconds_instrumented = 0.00176299
+    set_loss = 5984
+    set_win = 0
+    size = 7176
+    win = 7176
+    [[propagation.layers]]
+    decrements = 0
+    dist = 34
+    loss = 5984
+    preds = 88400
+    preds_undecided = 6600
+    seconds_instrumented = 0.0014422
+    set_loss = 0
+    set_win = 6600
+    size = 5984
+    win = 0
+    [[propagation.layers]]
+    decrements = 7488
+    dist = 35
+    loss = 0
+    preds = 86824
+    preds_undecided = 7488
+    seconds_instrumented = 0.001543325
+    set_loss = 4168
+    set_win = 0
+    size = 6600
+    win = 6600
+    [[propagation.layers]]
+    decrements = 0
+    dist = 36
+    loss = 4168
+    preds = 58804
+    preds_undecided = 3508
+    seconds_instrumented = 0.000964328
+    set_loss = 0
+    set_win = 3508
+    size = 4168
+    win = 0
+    [[propagation.layers]]
+    decrements = 4272
+    dist = 37
+    loss = 0
+    preds = 48296
+    preds_undecided = 4272
+    seconds_instrumented = 0.000847121
+    set_loss = 2772
+    set_win = 0
+    size = 3508
+    win = 3508
+    [[propagation.layers]]
+    decrements = 0
+    dist = 38
+    loss = 2772
+    preds = 40416
+    preds_undecided = 2112
+    seconds_instrumented = 0.000626371
+    set_loss = 0
+    set_win = 2112
+    size = 2772
+    win = 0
+    [[propagation.layers]]
+    decrements = 3120
+    dist = 39
+    loss = 0
+    preds = 29440
+    preds_undecided = 3120
+    seconds_instrumented = 0.000533789
+    set_loss = 1900
+    set_win = 0
+    size = 2112
+    win = 2112
+    [[propagation.layers]]
+    decrements = 0
+    dist = 40
+    loss = 1900
+    preds = 27228
+    preds_undecided = 1448
+    seconds_instrumented = 0.000440081
+    set_loss = 0
+    set_win = 1448
+    size = 1900
+    win = 0
+    [[propagation.layers]]
+    decrements = 2728
+    dist = 41
+    loss = 0
+    preds = 21736
+    preds_undecided = 2728
+    seconds_instrumented = 0.00039279
+    set_loss = 1788
+    set_win = 0
+    size = 1448
+    win = 1448
+    [[propagation.layers]]
+    decrements = 0
+    dist = 42
+    loss = 1788
+    preds = 25340
+    preds_undecided = 1076
+    seconds_instrumented = 0.000398956
+    set_loss = 0
+    set_win = 1076
+    size = 1788
+    win = 0
+    [[propagation.layers]]
+    decrements = 1856
+    dist = 43
+    loss = 0
+    preds = 14468
+    preds_undecided = 1856
+    seconds_instrumented = 0.000279832
+    set_loss = 1196
+    set_win = 0
+    size = 1076
+    win = 1076
+    [[propagation.layers]]
+    decrements = 0
+    dist = 44
+    loss = 1196
+    preds = 16588
+    preds_undecided = 660
+    seconds_instrumented = 0.000263623
+    set_loss = 0
+    set_win = 660
+    size = 1196
+    win = 0
+    [[propagation.layers]]
+    decrements = 984
+    dist = 45
+    loss = 0
+    preds = 8760
+    preds_undecided = 984
+    seconds_instrumented = 0.000163499
+    set_loss = 680
+    set_win = 0
+    size = 660
+    win = 660
+    [[propagation.layers]]
+    decrements = 0
+    dist = 46
+    loss = 680
+    preds = 8912
+    preds_undecided = 432
+    seconds_instrumented = 0.000156999
+    set_loss = 0
+    set_win = 432
+    size = 680
+    win = 0
+    [[propagation.layers]]
+    decrements = 312
+    dist = 47
+    loss = 0
+    preds = 5704
+    preds_undecided = 312
+    seconds_instrumented = 9.75e-5
+    set_loss = 232
+    set_win = 0
+    size = 432
+    win = 432
+    [[propagation.layers]]
+    decrements = 0
+    dist = 48
+    loss = 232
+    preds = 3184
+    preds_undecided = 80
+    seconds_instrumented = 4.9791e-5
+    set_loss = 0
+    set_win = 80
+    size = 232
+    win = 0
+    [[propagation.layers]]
+    decrements = 64
+    dist = 49
+    loss = 0
+    preds = 1280
+    preds_undecided = 64
+    seconds_instrumented = 2.0042e-5
+    set_loss = 32
+    set_win = 0
+    size = 80
+    win = 80
+    [[propagation.layers]]
+    decrements = 0
+    dist = 50
+    loss = 32
+    preds = 392
+    preds_undecided = 8
+    seconds_instrumented = 6.583e-6
+    set_loss = 0
+    set_win = 8
+    size = 32
+    win = 0
+    [[propagation.layers]]
+    decrements = 8
+    dist = 51
+    loss = 0
+    preds = 128
+    preds_undecided = 8
+    seconds_instrumented = 2.25e-6
+    set_loss = 0
+    set_win = 0
+    size = 8
+    win = 8
+
+[solve]
+checksum = "fd057af6"
+
+    [solve.allocated_bytes]
+    max = 2.4794304e7
+    median = 2.4794304e7
+    min = 2.4794304e7
+    n = 7
+    samples = [2.4794304e7, 2.4794304e7, 2.4794304e7, 2.4794304e7, 2.4794304e7, 2.4794304e7, 2.4794304e7]
+
+    [solve.gc_seconds]
+    max = 0.0
+    median = 0.0
+    min = 0.0
+    n = 7
+    samples = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+
+    [solve.seconds]
+    max = 1.081577471
+    median = 1.054316828
+    min = 1.041879104
+    n = 7
+    samples = [1.049448105, 1.056622524, 1.054316828, 1.041879104, 1.0427961, 1.055012741, 1.081577471]
+
+[threads]
+all_identical = true
+note = "src/ に Threads.@threads / @spawn は無い。-t を変えても solve() は単一スレッドで走る"
+uses_threads_in_src = false
+
+    [threads.probes.t1]
+    checksum = "fd057af6"
+    nthreads = 1
+
+        [threads.probes.t1.rss_after_solve]
+        maxrss = 760180736
+        vmhwm = 436695040
+        vmrss = 436695040
+
+        [threads.probes.t1.rss_before_solve]
+        maxrss = 760180736
+        vmhwm = 374816768
+        vmrss = 374816768
+
+        [threads.probes.t1.solve.allocated_bytes]
+        max = 2.4794304e7
+        median = 2.4794304e7
+        min = 2.4794304e7
+        n = 7
+        samples = [2.4794304e7, 2.4794304e7, 2.4794304e7, 2.4794304e7, 2.4794304e7, 2.4794304e7, 2.4794304e7]
+
+        [threads.probes.t1.solve.gc_seconds]
+        max = 0.0
+        median = 0.0
+        min = 0.0
+        n = 7
+        samples = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+
+        [threads.probes.t1.solve.seconds]
+        max = 1.07014098
+        median = 1.034649531
+        min = 1.023803364
+        n = 7
+        samples = [1.033736951, 1.023803364, 1.034649531, 1.029875507, 1.040006136, 1.07014098, 1.043288957]
+
+    [threads.probes.t8]
+    checksum = "fd057af6"
+    nthreads = 8
+
+        [threads.probes.t8.rss_after_solve]
+        maxrss = 760180736
+        vmhwm = 425627648
+        vmrss = 425627648
+
+        [threads.probes.t8.rss_before_solve]
+        maxrss = 760180736
+        vmhwm = 364765184
+        vmrss = 364765184
+
+        [threads.probes.t8.solve.allocated_bytes]
+        max = 2.4794304e7
+        median = 2.4794304e7
+        min = 2.4794304e7
+        n = 7
+        samples = [2.4794304e7, 2.4794304e7, 2.4794304e7, 2.4794304e7, 2.4794304e7, 2.4794304e7, 2.4794304e7]
+
+        [threads.probes.t8.solve.gc_seconds]
+        max = 0.000204833
+        median = 0.0
+        min = 0.0
+        n = 7
+        samples = [0.000204833, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+
+        [threads.probes.t8.solve.seconds]
+        max = 1.055043953
+        median = 1.035298737
+        min = 1.030364673
+        n = 7
+        samples = [1.033536744, 1.030364673, 1.055043953, 1.032679747, 1.042334377, 1.037304646, 1.035298737]
