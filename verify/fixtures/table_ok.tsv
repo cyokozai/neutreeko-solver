@@ -1,0 +1,10 @@
+# compare.jl の動作確認用（maxdepth=5 で全行一致する）。値は oracle と素朴ミニマックスで確認済み
+B:.B.B...W.........B...W.W.	draw	0
+W:BBB...........W.....W.W..	loss	0
+B:.BB.B.........W.....W.W..	win	1
+W:.BB.B.........W.....W.W..	loss	2
+W:W...............BB.WB...W	win	3
+W:.................BB.WWB.W	loss	4
+W:B.B..W........WB....W....	win	5
+B:....B...B.....W....B...WW	loss	6
+W:....W..........B....WBWB.	win	7
