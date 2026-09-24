@@ -7,3 +7,20 @@ LICENSE
 
 .DS_Store*
 *.DS_Store
+
+# Git / エディタ / エージェントの作業領域
+.git
+.gitignore
+.gitmessage
+.github
+.devcontainer
+.claude
+.vscode
+
+# 解析表などの出力（compose ではホストからマウントする）
+data/
+
+# Julia の実行時生成物
+*.jl.cov
+*.jl.*.cov
+*.jl.mem
