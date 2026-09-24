@@ -10,4 +10,5 @@ const NT = Neutreeko
     include("test_index.jl")
     include("test_solve.jl")
     include("test_stats.jl")
+    include("test_agent.jl")
 end
