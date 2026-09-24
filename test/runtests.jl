@@ -6,4 +6,5 @@ const NT = Neutreeko
 
 @testset "Neutreeko" begin
     include("test_board.jl")
+    include("test_position.jl")
 end

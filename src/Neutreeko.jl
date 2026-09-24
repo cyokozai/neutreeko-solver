@@ -5,6 +5,11 @@
 """
 module Neutreeko
 
+export Position, Move, initial_position, legal_moves, apply_move, is_win_line,
+       parse_position, format_position, format_move, parse_move, predecessors,
+       solve, save_table, load_table, lookup, best_moves
+
 include("board.jl")
+include("position.jl")
 
 end # module
