@@ -11,5 +11,6 @@ export Position, Move, initial_position, legal_moves, apply_move, is_win_line,
 
 include("board.jl")
 include("position.jl")
+include("index.jl")
 
 end # module

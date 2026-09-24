@@ -168,8 +168,19 @@ end
 
 "手番側視点の局面 (me, opp) の合法手の数"
 function count_moves(me::Bits, opp::Bits)
+    occ = me | opp
     n = 0
-    foreach_move((_, _) -> (n += 1), me, opp)
+    m = me
+    while m != 0
+        s = trailing_zeros(m)
+        m &= m - Bits(1)
+        @inbounds rays = RAYS[s+1]
+        for d in 1:8
+            ray = @inbounds rays[d]
+            # 隣のマスが空いていれば、その方向に少なくとも 1 マス動ける
+            (!isempty(ray) && (occ >> @inbounds(ray[1])) & 1 == 0) && (n += 1)
+        end
+    end
     return n
 end
 
