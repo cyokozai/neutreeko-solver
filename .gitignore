@@ -3,3 +3,6 @@
 *.DS_Store
 
 .env
+
+# 解の表（scripts/solve.jl が生成するバイナリ）
+data/
