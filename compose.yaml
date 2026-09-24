@@ -1,0 +1,51 @@
+# Neutreeko 強解決ソルバーのコンテナ実行環境。
+#
+#   make test    # = docker compose run --rm --build test
+#   make verify  # = docker compose run --rm --build verify
+#   make solve   # = docker compose run --rm --build solve [ARGS]
+#   make shell   # = docker compose run --rm shell
+#
+# test / verify / solve はイメージに焼き込んだコードで走り、data/ だけをホストに
+# マウントする（解析表をホスト側に残すため）。shell はリポジトリ全体をマウントして、
+# ホストで編集したコードをそのまま試せるようにする。
+name: neutreeko-solver
+
+x-julia: &julia
+  build:
+    context: .
+    dockerfile: docker/Dockerfile
+  image: neutreeko-solver:dev
+  working_dir: /work
+  # ホストの UID/GID で動かし、data/ に root 所有のファイルを作らない（Makefile が渡す）。
+  user: "${HOST_UID:-0}:${HOST_GID:-0}"
+  environment:
+    JULIA_NUM_THREADS: "${JULIA_NUM_THREADS:-auto}"
+  volumes:
+    - ./data:/work/data
+
+services:
+  test:
+    <<: *julia
+    entrypoint: ["run-if-present", "Project.toml", "julia", "--project=.", "--color=yes", "-e", "using Pkg; Pkg.test()"]
+    command: []
+
+  verify:
+    <<: *julia
+    entrypoint: ["run-if-present", "verify/runtests.jl", "julia", "--color=yes", "verify/runtests.jl"]
+    command: []
+
+  solve:
+    <<: *julia
+    # フル解析は明示的に頼まれた処理なので、スクリプトが無ければ失敗させる。
+    # `docker compose run --rm solve <引数...>` の引数は scripts/solve.jl に渡る。
+    entrypoint: ["run-if-present", "--strict", "scripts/solve.jl", "julia", "--project=.", "--color=yes", "scripts/solve.jl"]
+    command: []
+
+  shell:
+    <<: *julia
+    volumes:
+      - .:/work
+    entrypoint: ["bash"]
+    command: []
+    stdin_open: true
+    tty: true

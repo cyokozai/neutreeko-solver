@@ -1,0 +1,175 @@
+name: Julia CI
+
+# test / verify は push と pull_request で走る。
+# ソルバー本体（Project.toml）や独立検証器（verify/runtests.jl）がまだ無い段階では、
+# 該当ジョブを「skip」として緑で終える（無いファイルで CI を落とさない）。
+# フル解析 scripts/solve.jl は時間がかかりうるので workflow_dispatch のときだけ走らせる。
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      solve_args:
+        description: "scripts/solve.jl に渡す引数（空白区切り）"
+        required: false
+        default: ""
+        type: string
+      upload_data:
+        description: "data/ の中身も artifact に含める"
+        required: false
+        default: false
+        type: boolean
+      timeout_minutes:
+        description: "solve ジョブの制限時間（分、最大 360）"
+        required: false
+        default: 120
+        type: number
+
+# julia-actions/cache が古いキャッシュを消すのに actions: write が要る。
+permissions:
+  actions: write
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event_name }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name != 'workflow_dispatch' }}
+
+env:
+  JULIA_VERSION: "1.11"
+
+jobs:
+  test:
+    name: Pkg.test
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Detect Project.toml
+        id: detect
+        run: |
+          if [ -f Project.toml ]; then
+            echo "present=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "present=false" >> "$GITHUB_OUTPUT"
+            echo "::notice title=Pkg.test skipped::Project.toml が無いため Pkg.test() を省略しました"
+            echo "Project.toml が無いため Pkg.test() を省略しました。" >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Setup Julia ${{ env.JULIA_VERSION }}
+        if: steps.detect.outputs.present == 'true'
+        uses: julia-actions/setup-julia@fa02766e078afaaf09b14210362cee14137e6a32 # v3.0.2
+        with:
+          version: ${{ env.JULIA_VERSION }}
+
+      - name: Cache Julia depot
+        if: steps.detect.outputs.present == 'true'
+        uses: julia-actions/cache@a7bed9df697e5d7309d68afe7542a87621a8b6c8 # v3.3.0
+
+      - name: Pkg.test()
+        if: steps.detect.outputs.present == 'true'
+        run: julia --project=. --color=yes -e 'using Pkg; Pkg.test()'
+
+  verify:
+    name: Independent verifier
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Detect verify/runtests.jl
+        id: detect
+        run: |
+          if [ -f verify/runtests.jl ]; then
+            echo "present=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "present=false" >> "$GITHUB_OUTPUT"
+            echo "::notice title=verify skipped::verify/runtests.jl が無いため独立検証を省略しました"
+            echo "verify/runtests.jl が無いため独立検証を省略しました。" >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Setup Julia ${{ env.JULIA_VERSION }}
+        if: steps.detect.outputs.present == 'true'
+        uses: julia-actions/setup-julia@fa02766e078afaaf09b14210362cee14137e6a32 # v3.0.2
+        with:
+          version: ${{ env.JULIA_VERSION }}
+
+      - name: Cache Julia depot
+        if: steps.detect.outputs.present == 'true'
+        uses: julia-actions/cache@a7bed9df697e5d7309d68afe7542a87621a8b6c8 # v3.3.0
+
+      - name: julia verify/runtests.jl
+        if: steps.detect.outputs.present == 'true'
+        run: julia --color=yes verify/runtests.jl
+
+  solve:
+    name: Full solve (manual)
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: ${{ fromJSON(inputs.timeout_minutes) }}
+    env:
+      JULIA_NUM_THREADS: auto
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Require scripts/solve.jl
+        run: |
+          missing=0
+          for f in Project.toml scripts/solve.jl; do
+            if [ ! -f "$f" ]; then
+              echo "::error title=solve::$f が見つかりません"
+              missing=1
+            fi
+          done
+          exit "$missing"
+
+      - name: Setup Julia ${{ env.JULIA_VERSION }}
+        uses: julia-actions/setup-julia@fa02766e078afaaf09b14210362cee14137e6a32 # v3.0.2
+        with:
+          version: ${{ env.JULIA_VERSION }}
+
+      - name: Cache Julia depot
+        uses: julia-actions/cache@a7bed9df697e5d7309d68afe7542a87621a8b6c8 # v3.3.0
+
+      - name: Pkg.instantiate()
+        run: julia --project=. --color=yes -e 'using Pkg; Pkg.instantiate(); Pkg.precompile()'
+
+      - name: julia scripts/solve.jl
+        shell: bash
+        env:
+          # 入力は環境変数経由で渡し、式展開によるスクリプト注入を避ける。
+          SOLVE_ARGS: ${{ inputs.solve_args }}
+        run: |
+          set -euo pipefail
+          mkdir -p solve-output data
+          {
+            echo "# commit: ${GITHUB_SHA}"
+            echo "# args:   ${SOLVE_ARGS}"
+            echo "# julia:  $(julia --version)"
+            echo "# start:  $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          } > solve-output/meta.txt
+          # SOLVE_ARGS は意図的に単語分割する（空白区切りの引数列として渡す）。
+          # shellcheck disable=SC2086
+          julia --project=. --color=no scripts/solve.jl ${SOLVE_ARGS} \
+            2> >(tee solve-output/stderr.log >&2) \
+            | tee solve-output/stdout.log
+          echo "# end:    $(date -u +%Y-%m-%dT%H:%M:%SZ)" >> solve-output/meta.txt
+
+      - name: Upload solve output
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: solve-output-${{ github.run_id }}
+          path: solve-output/
+          if-no-files-found: warn
+
+      - name: Upload data/
+        if: always() && inputs.upload_data
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: solve-data-${{ github.run_id }}
+          path: data/
+          if-no-files-found: warn

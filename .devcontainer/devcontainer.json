@@ -1,0 +1,28 @@
+{
+  // compose.yaml と同じ docker/Dockerfile を使う開発用コンテナ。
+  // リポジトリ全体を /work にマウントするので、ホストでの編集がそのまま反映される。
+  "name": "neutreeko-solver",
+  "build": {
+    "dockerfile": "../docker/Dockerfile",
+    "context": ".."
+  },
+  "workspaceMount": "source=${localWorkspaceFolder},target=/work,type=bind",
+  "workspaceFolder": "/work",
+  "containerEnv": {
+    "JULIA_NUM_THREADS": "auto"
+  },
+  // マウントしたリポジトリ側の Project.toml で依存を解決し直す（まだ無ければ何もしない）。
+  "postCreateCommand": "run-if-present Project.toml julia --project=. -e 'using Pkg; Pkg.instantiate()'",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "julialang.language-julia"
+      ],
+      "settings": {
+        "julia.executablePath": "/usr/local/julia/bin/julia",
+        "julia.environmentPath": "/work",
+        "julia.NumThreads": "auto"
+      }
+    }
+  }
+}
