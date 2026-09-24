@@ -36,7 +36,7 @@ make help      # ターゲット一覧
 - `make solve ARGS="--no-move=loss"` で、合法手 0 の局面を負けとして解きます（該当する局面は 0 件なので、表は変わりません）。
 - `make` を使わない場合は `docker compose run --rm --build test` のように直接呼べます。
 - VS Code では `.devcontainer/` の Dev Container が使えます。
-- 対局用のスクリプト `play.jl` は別の PR で追加する予定です。
+- 対局: `julia --project=. scripts/play.jl --black human --white perfect`（盤面の表示、`hint` で全合法手の評価、`undo`、`--analyze "<局面>"`、`--games N` でエージェント同士の多数対局）。総当たりは `scripts/tournament.jl`（#6 で追加）。
 
 ### 表を引く
 
@@ -65,9 +65,13 @@ best_moves(t, p)   # b1-c1, d1-c1
 │   ├── solve.jl        後退解析 solve()、検証用の前向き不動点反復 solve_fixpoint()
 │   ├── table.jl        表の保存・読込、lookup / best_moves / principal_variation
 │   ├── symmetry.jl     盤面の 8 対称、対称類の集計
-│   └── stats.jl        合法手 0 の局面、初期局面からの到達可能性
+│   ├── stats.jl        合法手 0 の局面、初期局面からの到達可能性
+│   └── agent.jl        対戦エージェント（Perfect / AlphaBeta / Random）と play_game
 ├── test/               Pkg.test() のテスト一式
-├── scripts/solve.jl    強解決して表を保存し、統計を出力する
+├── scripts/
+│   ├── solve.jl        強解決して表を保存し、統計を出力する
+│   ├── play.jl         対局 CLI（人間・エージェント、局面解析）
+│   └── tournament.jl   エージェント総当たりの勝率表
 ├── verify/             独立実装の αβ 検証器（別の PR で追加予定）
 ├── docker/             Dockerfile と入口スクリプト
 ├── compose.yaml        test / verify / solve / shell のサービス定義
