@@ -80,7 +80,7 @@ best_moves(t, p)   # b1-c1, d1-c1
 ├── compose.yaml        test / verify / solve / shell のサービス定義
 ├── Makefile            make test / verify / solve / shell / build / clean
 ├── .devcontainer/      VS Code の Dev Container 設定
-├── .github/workflows/  CI（Julia のテスト・検証器・手動のフル解析、Markdown の整形）
+├── .github/workflows/  CI（Pkg.test と独立検証器、手動のフル解析）
 ├── docs/report.md      説明資料
 └── data/               生成される解の表（git 管理外）
 ```

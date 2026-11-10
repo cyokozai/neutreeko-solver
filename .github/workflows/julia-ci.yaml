@@ -1,11 +1,13 @@
 name: Julia CI
 
-# test / verify は push と pull_request で走る。
-# ソルバー本体（Project.toml）や独立検証器（verify/runtests.jl）がまだ無い段階では、
-# 該当ジョブを「skip」として緑で終える（無いファイルで CI を落とさない）。
+# test / verify は main への push と pull_request で走る（必須のテスト CI）。
+# Project.toml・test/runtests.jl・verify/runtests.jl のどれかが無ければ失敗させる
+# （無いファイルを skip して緑にしない）。
+# push は main に限定し、PR ブランチで push と pull_request が二重に走らないようにする。
 # フル解析 scripts/solve.jl は時間がかかりうるので workflow_dispatch のときだけ走らせる。
 on:
   push:
+    branches: [main]
   pull_request:
   workflow_dispatch:
     inputs:
@@ -46,29 +48,26 @@ jobs:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
-      - name: Detect Project.toml
-        id: detect
+      - name: Require Project.toml and test/runtests.jl
         run: |
-          if [ -f Project.toml ]; then
-            echo "present=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "present=false" >> "$GITHUB_OUTPUT"
-            echo "::notice title=Pkg.test skipped::Project.toml が無いため Pkg.test() を省略しました"
-            echo "Project.toml が無いため Pkg.test() を省略しました。" >> "$GITHUB_STEP_SUMMARY"
-          fi
+          missing=0
+          for f in Project.toml test/runtests.jl; do
+            if [ ! -f "$f" ]; then
+              echo "::error title=Pkg.test::$f が見つかりません"
+              missing=1
+            fi
+          done
+          exit "$missing"
 
       - name: Setup Julia ${{ env.JULIA_VERSION }}
-        if: steps.detect.outputs.present == 'true'
         uses: julia-actions/setup-julia@fa02766e078afaaf09b14210362cee14137e6a32 # v3.0.2
         with:
           version: ${{ env.JULIA_VERSION }}
 
       - name: Cache Julia depot
-        if: steps.detect.outputs.present == 'true'
         uses: julia-actions/cache@a7bed9df697e5d7309d68afe7542a87621a8b6c8 # v3.3.0
 
       - name: Pkg.test()
-        if: steps.detect.outputs.present == 'true'
         run: julia --project=. --color=yes -e 'using Pkg; Pkg.test()'
 
   verify:
@@ -79,29 +78,22 @@ jobs:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
-      - name: Detect verify/runtests.jl
-        id: detect
+      - name: Require verify/runtests.jl
         run: |
-          if [ -f verify/runtests.jl ]; then
-            echo "present=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "present=false" >> "$GITHUB_OUTPUT"
-            echo "::notice title=verify skipped::verify/runtests.jl が無いため独立検証を省略しました"
-            echo "verify/runtests.jl が無いため独立検証を省略しました。" >> "$GITHUB_STEP_SUMMARY"
+          if [ ! -f verify/runtests.jl ]; then
+            echo "::error title=verify::verify/runtests.jl が見つかりません"
+            exit 1
           fi
 
       - name: Setup Julia ${{ env.JULIA_VERSION }}
-        if: steps.detect.outputs.present == 'true'
         uses: julia-actions/setup-julia@fa02766e078afaaf09b14210362cee14137e6a32 # v3.0.2
         with:
           version: ${{ env.JULIA_VERSION }}
 
       - name: Cache Julia depot
-        if: steps.detect.outputs.present == 'true'
         uses: julia-actions/cache@a7bed9df697e5d7309d68afe7542a87621a8b6c8 # v3.3.0
 
       - name: julia verify/runtests.jl
-        if: steps.detect.outputs.present == 'true'
         run: julia --color=yes verify/runtests.jl
 
   solve:
